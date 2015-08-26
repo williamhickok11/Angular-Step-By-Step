@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NSS Starter Kit - Angular</title>
+
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body ng-app="TodoApp">
+
+  <section ng-controller="TodoCtrl">
+    <h1>{{title}}</h1>
+
+    <div>
+      <input type="text" ng-model="macaroni" />
+      <div> {{ macaroni }} </div>
+    </div>
+
+    <div>
+      <ul ng-repeat="todo in todos">
+        <li>{{todo.name}} <button ng-click="killTodo(todo)">Finish</button></li>
+      </ul>
+    </div>
+
+    <div>
+      <input type="text" ng-model="newTodo">
+      <button ng-click="addTodo()">Create</button>
+    </div>
+
+  </section>
+
+  <section ng-controller="SongCtrl">
+    <div>
+      <div ng-repeat="song in songs">
+        <h2>{{ song.name }}</h2>
+        Performed by {{ song.artist }} 
+        on the album {{ song.album }}
+        <button ng-click="killSong(song)">Delete Song</button>
+      </div>
+    </div>
+
+    <div>
+      Song name: <input type="text" ng-model="newSong.name" />
+    </div>
+    <div>
+      Album: <input type="text" ng-model="newSong.album" />
+    </div>
+    <div>
+      Artist: <input type="text" ng-model="newSong.artist" />
+    </div>
+    <button ng-click="addSong()">Add Song</button>
+
+  </section>
+  
+  <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="lib/bower_components/angular/angular.min.js"></script>
+
+
+  <script src="app/app.js"></script>
+  <script src="app/controllers/Todo.js"></script>
+  <script src="app/controllers/Song.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
