@@ -1,5 +1,11 @@
 app.controller("SongCtrl", function($scope) {
 
+  $scope.songSearchText = {
+    name: "",
+    artist: "",
+    album: ""
+  };
+
   $scope.newSong = {
     name: "",
     artist: "",
@@ -14,6 +20,11 @@ app.controller("SongCtrl", function($scope) {
     },
     {
       name: "Breakfast in America", 
+      artist: "Supertramp",
+      album: "Breakfast in America"
+    },
+    {
+      name: "Goodbye Mary", 
       artist: "Supertramp",
       album: "Breakfast in America"
     },
@@ -47,9 +58,5 @@ app.controller("SongCtrl", function($scope) {
 
 
 });
-
-
-
-
 
 

@@ -10,17 +10,25 @@
 
 <body ng-app="TodoApp">
 
+
   <section ng-controller="TodoCtrl">
     <h1>{{title}}</h1>
 
     <div>
-      <input type="text" ng-model="macaroni" />
-      <div> {{ macaroni }} </div>
+      Filter task list: <input type="text" ng-model="searchText" />
     </div>
 
     <div>
-      <ul ng-repeat="todo in todos">
-        <li>{{todo.name}} <button ng-click="killTodo(todo)">Finish</button></li>
+      Grouped tasks:
+      <select
+          ng-model="theTodo"
+          ng-options="value.name group by value.complete for value in todos">
+      </select>
+    </div>
+
+    <div>
+      <ul ng-repeat="todo in todos | filter:searchText">
+        <li>{{ todo.name|sort|reverse|capitalize }} <button ng-click="killTodo(todo)">Finish</button></li>
       </ul>
     </div>
 
@@ -31,9 +39,27 @@
 
   </section>
 
+
+
+ <!--  
   <section ng-controller="SongCtrl">
     <div>
-      <div ng-repeat="song in songs">
+      <input type="text" ng-model="songSearchText.name" />
+    </div>
+
+    <div>
+
+      <select>
+          <option ng-repeat="currentSong in songs | unique: 'artist'">{{ currentSong.artist }}</option>
+      </select>
+
+      <select
+          ng-model="theAlbum"
+          ng-options="value.album for value in songs">
+          <option>--</option>
+      </select>
+
+      <div ng-repeat="song in songs | filter: songSearchText">
         <h2>{{ song.name }}</h2>
         Performed by {{ song.artist }} 
         on the album {{ song.album }}
@@ -53,33 +79,17 @@
     <button ng-click="addSong()">Add Song</button>
 
   </section>
-  
+  --> 
   <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="lib/bower_components/angular/angular.min.js"></script>
+  <script src="lib/bower_components/angular-filter/dist/angular-filter.min.js"></script>
 
 
   <script src="app/app.js"></script>
+  <script src="app/filters/capitalize.js"></script>
+  <script src="app/filters/reverse.js"></script>
+  <script src="app/filters/sort.js"></script>
   <script src="app/controllers/Todo.js"></script>
   <script src="app/controllers/Song.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

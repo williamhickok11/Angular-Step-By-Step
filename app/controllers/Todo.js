@@ -3,11 +3,13 @@ app.controller("TodoCtrl", function($scope, $q) {
   $scope.title = "Welcome to Angular";
   $scope.macaroni = "";
   $scope.newTodo = "";
+  $scope.theTodo = "";
 
   $scope.todos = [
-    { name: "Mow the lawn", complete: false },
-    { name: "Cut the grass", complete: false },
-    { name: "Trim the weeds", complete: false }
+    { name: "mow the lawn", complete: "incomplete" },
+    { name: "cut the grass", complete: "complete" },
+    { name: "kill the ants", complete: "incomplete" },
+    { name: "trim the weeds", complete: "complete" }
   ];
 
   $scope.killTodo = function(todo) {
@@ -42,10 +44,28 @@ app.controller("TodoCtrl", function($scope, $q) {
   getTodoList()
     .then(
       function(promiseResolutionData) {
-        $scope.todos = promiseResolutionData;
+        // $scope.todos = promiseResolutionData;
       },
       function(error) {
         console.log("error", error);
       });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
