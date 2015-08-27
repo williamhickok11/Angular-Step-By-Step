@@ -8,88 +8,27 @@
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 
-<body ng-app="TodoApp">
+<body ng-app="SongApp">
 
 
-  <section ng-controller="TodoCtrl">
-    <h1>{{title}}</h1>
-
-    <div>
-      Filter task list: <input type="text" ng-model="searchText" />
-    </div>
-
-    <div>
-      Grouped tasks:
-      <select
-          ng-model="theTodo"
-          ng-options="value.name group by value.complete for value in todos">
-      </select>
-    </div>
-
-    <div>
-      <ul ng-repeat="todo in todos | filter:searchText">
-        <li>{{ todo.name|sort|reverse|capitalize }} <button ng-click="killTodo(todo)">Finish</button></li>
-      </ul>
-    </div>
-
-    <div>
-      <input type="text" ng-model="newTodo">
-      <button ng-click="addTodo()">Create</button>
-    </div>
-
-  </section>
+  <div ng-view></div>
 
 
 
- <!--  
-  <section ng-controller="SongCtrl">
-    <div>
-      <input type="text" ng-model="songSearchText.name" />
-    </div>
-
-    <div>
-
-      <select>
-          <option ng-repeat="currentSong in songs | unique: 'artist'">{{ currentSong.artist }}</option>
-      </select>
-
-      <select
-          ng-model="theAlbum"
-          ng-options="value.album for value in songs">
-          <option>--</option>
-      </select>
-
-      <div ng-repeat="song in songs | filter: songSearchText">
-        <h2>{{ song.name }}</h2>
-        Performed by {{ song.artist }} 
-        on the album {{ song.album }}
-        <button ng-click="killSong(song)">Delete Song</button>
-      </div>
-    </div>
-
-    <div>
-      Song name: <input type="text" ng-model="newSong.name" />
-    </div>
-    <div>
-      Album: <input type="text" ng-model="newSong.album" />
-    </div>
-    <div>
-      Artist: <input type="text" ng-model="newSong.artist" />
-    </div>
-    <button ng-click="addSong()">Add Song</button>
-
-  </section>
-  --> 
   <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="lib/bower_components/angular/angular.min.js"></script>
   <script src="lib/bower_components/angular-filter/dist/angular-filter.min.js"></script>
+  <script src="lib/bower_components/angular-route/angular-route.min.js"></script>
 
 
   <script src="app/app.js"></script>
   <script src="app/filters/capitalize.js"></script>
   <script src="app/filters/reverse.js"></script>
   <script src="app/filters/sort.js"></script>
-  <script src="app/controllers/Todo.js"></script>
-  <script src="app/controllers/Song.js"></script>
+  <script src="app/factories/simple_storage.js"></script>
+  <script src="app/factories/song_storage.js"></script>
+  <script src="app/controllers/SongCtrl.js"></script>
+  <script src="app/controllers/SongDetailCtrl.js"></script>
+  <script src="app/controllers/SongFormCtrl.js"></script>
 </body>
 </html>
