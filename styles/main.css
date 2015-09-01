@@ -1,3 +1,20 @@
+.text--small {
+  font-size: 0.7em; }
 
+.c-song {
+  margin: 10px 0; }
+
+.rating {
+  display: inline;
+  padding: 0; }
+  .rating li {
+    display: inline;
+    list-style-type: none; }
+
+.star--filled {
+  color: gold; }
+
+.star--empty {
+  color: black; }
 
 /*# sourceMappingURL=main.css.map */

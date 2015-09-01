@@ -1,4 +1,4 @@
-app.factory("song-storage", function($q, $http) {
+app.factory("song-storage", function($q, $http, $firebaseObject) {
 
   function getSongList() {
 

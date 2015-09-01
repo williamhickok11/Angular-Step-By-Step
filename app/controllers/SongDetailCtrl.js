@@ -1,31 +1,22 @@
 app.controller("SongDetailCtrl", 
   ["$scope", 
   "$routeParams", 
-  "simple-storage", 
-  "song-storage",
-  
-  function($scope, $routeParams, simple_storage, song_storage) {
-    $scope.selectedSong = {};
+  "$firebaseArray",
+
+  function($scope, $routeParams, $firebaseArray) {
+    $scope.selectedSong = {name:"test"};
     $scope.songId = $routeParams.songId;
 
-    console.log("simple_storage.getJunk(\"garbage\")", 
-      simple_storage.getJunk("garbage"));
+    var ref = new Firebase("https://nss-demo-instructor.firebaseio.com/songs");
+    $scope.songs = $firebaseArray(ref);
 
-    console.log("$scope.songId", $scope.songId);
+    $scope.songs.$loaded()
+      .then(function() {
+        $scope.selectedSong = $scope.songs.$getRecord($scope.songId);
+      })
+      .catch(function(error) {
+        console.log("Error:", error);
+      });
 
-    song_storage.then(
-      function(promiseResolutionData) {
-        console.log("promiseResolutionData", promiseResolutionData);
-
-        $scope.selectedSong = promiseResolutionData.filter(function(song) {
-          return song.id === parseInt($scope.songId);
-        })[0];
-
-        console.log("$scope.selectedSong", $scope.selectedSong);
-      },
-      function(promiseRejectionError) {
-        console.log("error", promiseRejectionError);
-      }
-    );
   }
 ]);

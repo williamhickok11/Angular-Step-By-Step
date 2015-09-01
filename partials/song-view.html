@@ -1,0 +1,6 @@
+<a href="#/songs">&lt; Back to song list</a>
+<section>
+  <h4>Song #{{songId}} - {{ selectedSong.name }}</h4>
+  <x-music-history-song-brief song="selectedSong" max-rating="5"></x-music-history-song-brief>
+  <span class="text--small">Released in {{selectedSong.album.year}}</span>
+</section>

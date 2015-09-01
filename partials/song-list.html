@@ -1,11 +1,24 @@
 <section>
   <div>
-    <input type="text" ng-model="songSearchText.name" />
+    <input type="text" ng-model="songSearchText" />
   </div>
 
-  <div ng-repeat="song in songs | filter: songSearchText">
-    <a href="#/songs/{{ song.id }}">{{ song.name }}</a>
+  <div class="c-song" ng-repeat="song in songs | filter: songSearchText">
+    <a href="#/songs/{{ song.$id }}">{{ song.name }}</span></a>
+    <x-music-history-song-brief song="song" max-rating="5"></x-music-history-song-brief>
   </div>
 
   <a href="#/songs/new">Create New Song</a>
 </section>
+
+
+<!-- 
+    A note about `restrict` 
+  ==========================
+
+  <x-music-history-song-brief></x-music-history-song-brief>  Matches 'E' 
+
+  <div x-music-history-song-brief></div>                     Matches 'A' 
+
+  <div class="x-music-history-song-brief"></div>             Matches 'C' 
+-->

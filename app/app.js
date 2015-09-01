@@ -1,4 +1,4 @@
-var app = angular.module("SongApp", ['ngRoute', 'angular.filter']);
+var app = angular.module("SongApp", ['firebase', 'ngRoute', 'angular.filter']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
@@ -12,7 +12,7 @@ app.config(['$routeProvider',
         controller: 'SongFormCtrl'
       }).
       when('/songs/:songId', {
-        templateUrl: 'partials/song-detail.html',
+        templateUrl: 'partials/song-view.html',
         controller: 'SongDetailCtrl'
       }).
       otherwise({
