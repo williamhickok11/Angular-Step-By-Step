@@ -1,11 +1,12 @@
-var app = angular.module("SongApp", ['firebase', 'ngRoute', 'angular.filter']);
+var app = angular.module("SongApp", 
+['firebase', 'ngRoute', 'angular.filter']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
         templateUrl: 'partials/song-list.html',
-        controller: 'SongCtrl'
+        controller: 'SongCtrl as monkeyPants'
       }).
       when('/songs/new', {
         templateUrl: 'partials/song-form.html',
@@ -13,9 +14,18 @@ app.config(['$routeProvider',
       }).
       when('/songs/:songId', {
         templateUrl: 'partials/song-view.html',
-        controller: 'SongDetailCtrl'
+        controller: 'SongDetailCtrl as elephantBrains'
       }).
       otherwise({
         redirectTo: '/'
       });
   }]);
+
+
+
+
+
+
+
+
+

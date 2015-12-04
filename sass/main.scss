@@ -1,3 +1,22 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  background-color: goldenrod;
+  padding: 5px;
+
+  ul {
+    li {
+      display: inline;
+      list-style-type: none;
+      padding: 5px;
+      margin: 15px 0;  
+    }
+  }
+}
+
 .text--small {
   font-size: 0.7em;
 }

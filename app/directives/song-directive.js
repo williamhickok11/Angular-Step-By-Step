@@ -15,10 +15,13 @@ app.directive("musicHistorySongBrief", function() {
        */
       function setStars() {
         scope.stars = [];
-        for (var i = 0; i < scope.maxRating; i++) {
-          var clazz = (parseInt(scope.selectedSong.rating) <= i) ? "star--empty" : "star--filled";
-          scope.stars.push({class: clazz});
-        }        
+
+        if ( scope.selectedSong.hasOwnProperty("rating") ) {
+          for (var i = 0; i < scope.maxRating; i++) {
+            var clazz = (parseInt(scope.selectedSong.rating) <= i) ? "star--empty" : "star--filled";
+            scope.stars.push({class: clazz});
+          }
+        }
       }
 
       /*

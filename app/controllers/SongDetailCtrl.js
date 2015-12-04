@@ -1,22 +1,24 @@
 app.controller("SongDetailCtrl", 
-  ["$scope", 
-  "$routeParams", 
+  ["$routeParams",
   "$firebaseArray",
 
-  function($scope, $routeParams, $firebaseArray) {
-    $scope.selectedSong = {name:"test"};
-    $scope.songId = $routeParams.songId;
+  function($routeParams, $firebaseArray) {
+    this.selectedSong = {name:"test"};
+    this.songId = $routeParams.songId;
 
     var ref = new Firebase("https://nss-demo-instructor.firebaseio.com/songs");
-    $scope.songs = $firebaseArray(ref);
+    this.songs = $firebaseArray(ref);
 
-    $scope.songs.$loaded()
+    this.songs.$loaded()
       .then(function() {
-        $scope.selectedSong = $scope.songs.$getRecord($scope.songId);
-      })
+        this.selectedSong = this.songs.$getRecord(this.songId);
+      }.bind(this))
       .catch(function(error) {
         console.log("Error:", error);
       });
 
   }
 ]);
+
+
+

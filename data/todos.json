@@ -1,7 +1,0 @@
-{
-  "todos": [
-    { "name": "Wash the dog", "complete": false },
-    { "name": "Wash the cat", "complete": false },
-    { "name": "Wash the bird", "complete": false }
-  ]
-}

@@ -3,13 +3,24 @@
     <input type="text" ng-model="songSearchText" />
   </div>
 
-  <div class="c-song" ng-repeat="song in songs | filter: songSearchText">
-    <a href="#/songs/{{ song.$id }}">{{ song.name }}</span></a>
+  <div class="c-song" ng-repeat="song in monkeyPants.songs | filter: songSearchText">
+    <a href="#/songs/{{ song.$id }}">{{ song.name | sort | reverse | uppercase }}</span></a>
     <x-music-history-song-brief song="song" max-rating="5"></x-music-history-song-brief>
   </div>
 
   <a href="#/songs/new">Create New Song</a>
 </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- 
