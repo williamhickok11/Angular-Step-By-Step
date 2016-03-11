@@ -1,5 +1,7 @@
-app.factory("song-storage", function($q, $http, $firebaseObject) {
+"use strict";
 
+MusicHistory.factory("song-storage", function($q, $http) {
+  
   function getSongList() {
 
     // Return a promise for our async XHR
@@ -17,3 +19,13 @@ app.factory("song-storage", function($q, $http, $firebaseObject) {
 
   return getSongList();
 });
+
+
+
+
+
+
+
+
+
+

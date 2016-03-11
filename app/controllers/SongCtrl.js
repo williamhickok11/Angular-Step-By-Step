@@ -1,9 +1,17 @@
-app.controller("SongCtrl", 
-  ["$firebaseArray",
-  function($firebaseArray) {
+"use strict";
 
-    var ref = new Firebase("https://nss-demo-instructor.firebaseio.com/songs");
-    this.songs = $firebaseArray(ref);
+MusicHistory.controller("SongCtrl", [
+    "$scope",
+    "$http",
 
-  }
-]);
+  function($scope, $http) {
+    $scope.songSearchText = {name: "", artist: "", album: ""};
+    $scope.query = "";
+
+    $http.get("./data/songs.json")
+      .success(function (songObject) {
+        $scope.songs = songObject.songs;
+      });
+
+  }]
+);

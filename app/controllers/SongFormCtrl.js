@@ -1,19 +1,7 @@
-app.controller("SongFormCtrl", ["$scope", "$firebaseArray",
-  function($scope, $firebaseArray) {
+"use strict";
 
-    var ref = new Firebase("https://nss-demo-instructor.firebaseio.com/songs");
-    $scope.songs = $firebaseArray(ref);
-    $scope.newSong = {};
-
-    $scope.addSong = function() {
-      $scope.songs.$add({
-        artist: $scope.newSong.artist,
-        name: $scope.newSong.name,
-        album: {
-          name: $scope.newSong.albumName,
-          year: $scope.newSong.albumYear
-        }
-      });
-    };
+MusicHistory.controller("SongFormCtrl", ["$scope",
+  function($scope) {
+    $scope.songObject = {};
   }
 ]);
