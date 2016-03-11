@@ -1,8 +1,9 @@
 <section class="text--small">
+  <a href="/#/">Back to song listing</a>
   <div>
+    <h1>{{ selectedSong.name }}</h1>
     By {{ selectedSong.artist }} on {{ selectedSong.album.name }}
-    <ul class="rating">
-      <li class="{{star.class}}" ng-repeat="star in stars">&#9733;</li>
-    </ul>
   </div>
+
+  <button ng-click="deleteSong()">Delete Song</button>
 </section>

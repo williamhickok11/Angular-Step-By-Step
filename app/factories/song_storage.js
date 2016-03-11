@@ -6,10 +6,10 @@ MusicHistory.factory("song-storage", function($q, $http) {
 
     // Return a promise for our async XHR
     return $q(function(resolve, reject) {
-      $http.get('./data/songs.json')
+      $http.get('https://nss-demo-instructor.firebaseio.com/songs.json')
       .success(
         function(objectFromJSONFile) {
-          resolve(objectFromJSONFile.songs);
+          resolve(objectFromJSONFile);
         },function(error) {
           reject(error);
         }
@@ -17,7 +17,7 @@ MusicHistory.factory("song-storage", function($q, $http) {
     });
   }
 
-  return getSongList();
+  return getSongList;
 });
 
 

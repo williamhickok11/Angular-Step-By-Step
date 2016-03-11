@@ -3,15 +3,24 @@
 MusicHistory.controller("SongCtrl", [
     "$scope",
     "$http",
+    "song-storage",
 
-  function($scope, $http) {
+  function($scope, $http, songStorage) {
     $scope.songSearchText = {name: "", artist: "", album: ""};
     $scope.query = "";
+    $scope.songs = [];
 
-    $http.get("./data/songs.json")
-      .success(function (songObject) {
-        $scope.songs = songObject.songs;
-      });
+    songStorage().then(
+      function (songCollection) {
+        Object.keys(songCollection).forEach(function (key) {
+          songCollection[key].id = key;
+          $scope.songs.push(songCollection[key]);
+        });
+      },
+      function () {
+
+      }
+    );
 
   }]
 );
