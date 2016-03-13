@@ -1,9 +1,6 @@
 "use strict";
 
-MusicHistory.filter("reverse", function() {
-  return function(input) {
-    if (input !== null) {
-      return input.split("").reverse().join("");
-    }
-  };
-});
+MusicHistory.filter("reverse",
+  () =>
+    input => (input !== null) ? input.split("").reverse().join("") : ""
+);

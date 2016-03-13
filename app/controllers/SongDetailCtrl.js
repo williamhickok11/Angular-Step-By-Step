@@ -1,38 +1,42 @@
 "use strict";
 
-MusicHistory.controller("SongDetailCtrl", 
-  ["$scope", 
-  "$routeParams", 
-  "$http", 
-  "$location", 
-  "song-storage", 
-  
-  function($scope, $routeParams, $http, $location, songStorage) {
+MusicHistory.controller("SongDetailCtrl",
+[
+  "$scope",
+  "$routeParams",
+  "$http",
+  "$location",
+  "songFactory",
 
+  ($scope, $routeParams, $http, $location, songFactory) => {
+
+    // Default properties for bound variables
     $scope.songs = [];
     $scope.selectedSong = {};
 
-    songStorage().then(
-      function (songCollection) {
-        Object.keys(songCollection).forEach(function (key) {
+    // Invoke the promise that reads from Firebase
+    songFactory().then(
+
+      // Handle resolve() from the promise
+      songCollection => {
+        Object.keys(songCollection).forEach(key => {
           songCollection[key].id = key;
           $scope.songs.push(songCollection[key]);
         });
 
-        $scope.selectedSong = $scope.songs.filter(song => {
-          return song.id === $routeParams.songId;
-        })[0];
+        $scope.selectedSong = $scope.songs.filter(song => song.id === $routeParams.songId)[0];
       },
-      function () {
 
-      }
+      // Handle reject() from the promise
+      err => console.log(err)
     );
 
-    $scope.deleteSong = function () {
-      $http
+    /*
+      This function is bound to an ng-click directive
+      on the button in the view
+    */
+    $scope.deleteSong = () => $http
         .delete(`https://nss-demo-instructor.firebaseio.com/songs/${$routeParams.songId}.json`)
-        .then(() => $location.url("/"))
-    }
-
+        .then(() => $location.url("/"));
   }
 ]);

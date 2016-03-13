@@ -1,26 +1,26 @@
 "use strict";
 
 MusicHistory.controller("SongCtrl", [
-    "$scope",
-    "$http",
-    "song-storage",
+  "$scope",
+  "$http",
+  "songFactory",
 
-  function($scope, $http, songStorage) {
+  ($scope, $http, songFactory) => {
+    // Default property values for keys bound to input fields
     $scope.songSearchText = {name: "", artist: "", album: ""};
     $scope.query = "";
     $scope.songs = [];
 
-    songStorage().then(
-      function (songCollection) {
-        Object.keys(songCollection).forEach(function (key) {
-          songCollection[key].id = key;
-          $scope.songs.push(songCollection[key]);
-        });
-      },
-      function () {
-
-      }
+    // Invoke the promise that reads from Firebase
+    songFactory().then(
+      // Handle resolve() from the promise
+      songCollection => Object.keys(songCollection).forEach(key => {
+        songCollection[key].id = key;
+        $scope.songs.push(songCollection[key]);
+      }),
+      // Handle reject() from the promise
+      err => console.log(err)
     );
 
-  }]
-);
+  }
+]);

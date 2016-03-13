@@ -1,13 +1,14 @@
 "use strict";
 
-MusicHistory.controller("SongFormCtrl", 
+MusicHistory.controller("SongFormCtrl",
 [
-  "$scope", 
-  "$location", 
-  "$http", 
+  "$scope",
+  "$location",
+  "$http",
 
-  function($scope, $location, $http) {
-    
+  ($scope, $location, $http) => {
+
+    // Default property values for keys bound to input fields
     $scope.newSong = {
       name: "",
       albumName: "",
@@ -15,9 +16,15 @@ MusicHistory.controller("SongFormCtrl",
       artist: ""
     };
 
+    // Function bound to the Add Song button in the view template
     $scope.addSong = function () {
+
+      // POST the song to Firebase
       $http.post(
         "https://nss-demo-instructor.firebaseio.com/songs.json",
+
+        // Remember to stringify objects/arrays before
+        // sending them to an API
         JSON.stringify({
           name: $scope.newSong.name,
           album: {
@@ -26,19 +33,12 @@ MusicHistory.controller("SongFormCtrl",
           },
           artist: $scope.newSong.artist
         })
-      ).then(function successCallback(response) {
-        $location.url("/songs/");
-      }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      })
-    }
 
-}]);
-
-
-
-
-
-
-
+      // The $http.post() method returns a promise, so you can use then()
+      ).then(
+        () => $location.url("/songs/"),      // Handle resolve
+        (response) => console.log(response)  // Handle reject
+      );
+    };
+  }
+]);

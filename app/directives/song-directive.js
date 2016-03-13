@@ -1,4 +1,6 @@
-app.directive("musicHistorySongBrief", function() {
+"use strict";
+
+MusicHistory.directive("musicHistorySongBrief", function() {
   return {
     restrict: "E", // Restrict directive to element
     scope: {
@@ -6,11 +8,11 @@ app.directive("musicHistorySongBrief", function() {
       maxRating: "=" // Bind `max-rating` to maxRating local variable
     },
     templateUrl: "partials/song-brief.html",
-    link: function(scope, elem, attrs) {
+    link: function(scope) {
 
       /*
         Create a new key on the song called `stars`. It's
-        an array of objects. Each object contains which 
+        an array of objects. Each object contains which
         class to use on each of the stars.
        */
       function setStars() {
