@@ -1,5 +1,5 @@
 {
-  "predef": [ "document", "console", "angular" ],
+  "predef": [ "document", "console", "angular", "Firebase" ],
   "esversion": 6,
   "globalstrict": true,
   "curly": true,

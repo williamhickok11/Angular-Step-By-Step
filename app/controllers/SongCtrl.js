@@ -2,10 +2,10 @@
 
 MusicHistory.controller("SongCtrl", [
   "$scope",
-  "$http",
+  "$location",
   "songFactory",
 
-  ($scope, $http, songFactory) => {
+  ($scope, $location, songFactory) => {
     // Default property values for keys bound to input fields
     $scope.songSearchText = {name: "", artist: "", album: ""};
     $scope.query = "";
