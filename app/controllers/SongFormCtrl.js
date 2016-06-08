@@ -21,7 +21,7 @@ MusicHistory.controller("SongFormCtrl",
 
       // POST the song to Firebase
       $http.post(
-        "https://nss-demo-instructor.firebaseio.com/songs.json",
+        "https://blinding-inferno-201.firebaseio.com/songList.json",
 
         // Remember to stringify objects/arrays before
         // sending them to an API

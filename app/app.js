@@ -3,7 +3,7 @@
 /* exported MusicHistory */
 
 let MusicHistory = angular.module("SongApp", ["ngRoute", "firebase"])
-  .constant('firebaseURL', "https://nss-demo-instructor.firebaseio.com");
+  .constant('firebaseURL', "https://blinding-inferno-201.firebaseio.com/");
 
 /*
   Define a promise for any view that needs an authenticated user
@@ -53,6 +53,15 @@ MusicHistory.config(["$routeProvider",
         controller: "SongDetailCtrl",
         resolve: { isAuth }
       }).
+      when("/movie/search", {
+        templateUrl: "partials/search-movie.html",
+        controller: "MovieSearchCtrl"
+      }).
+      when("/notdolls", {
+        templateUrl: "partials/notdolls.html",
+        controller: "notdollsCtrl",
+        resolve: { isAuth }
+      }).
       otherwise({
         redirectTo: "/"
       });
@@ -66,7 +75,7 @@ MusicHistory.run([
   "$location",
 
   ($location) => {
-    let musicHistoryRef = new Firebase("https://nss-demo-instructor.firebaseio.com");
+    let musicHistoryRef = new Firebase("https://blinding-inferno-201.firebaseio.com/");
 
     musicHistoryRef.onAuth(authData => {
       if (!authData) {

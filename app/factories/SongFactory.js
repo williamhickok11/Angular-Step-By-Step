@@ -1,12 +1,12 @@
 "use strict";
-
+// Getting the songs data
 MusicHistory.factory("songFactory", ($q, $http) =>
   () =>
     $q((resolve, reject) => // Return a promise for our async XHR
       $http
-        .get("https://nss-demo-instructor.firebaseio.com/songs.json")
+        .get("https://blinding-inferno-201.firebaseio.com/songList.json")
         .success(
-          songCollection => resolve(songCollection),
+          (songCollection) => resolve(songCollection),
           error => reject(error)
         )
     )

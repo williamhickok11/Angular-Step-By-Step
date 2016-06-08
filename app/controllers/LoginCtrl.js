@@ -44,7 +44,7 @@ MusicHistory.controller("LoginCtrl",
       Attempt to authenticate the user with the
       supplied credentials.
      */
-    $scope.login = () => 
+    $scope.login = () =>
       authFactory
         .authenticate($scope.account)
         .then(() => {

@@ -1,6 +1,7 @@
 "use strict";
 
 MusicHistory.factory("authFactory", (firebaseURL) => {
+  // used to authenticate
   let ref = new Firebase(firebaseURL);
 
   return {
@@ -8,8 +9,9 @@ MusicHistory.factory("authFactory", (firebaseURL) => {
       Determine if the client is authenticated
      */
     isAuthenticated () {
+      // authenticate the user (all the date associated with the current user)
       let authData = ref.getAuth();
-
+      console.log("authData", authData);
       if (authData) {
         return true;
       } else {
